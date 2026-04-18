@@ -1,0 +1,15 @@
+.products-page { max-width: 1200px; margin: 0 auto; padding: 40px 24px; }
+
+.products-header { margin-bottom: 32px; }
+.products-header h1 { font-size: 32px; margin-bottom: 6px; }
+.products-header p { color: var(--color-text-muted); }
+
+.products-layout { display: flex; gap: 24px; align-items: flex-start; }
+
+.products-main { flex: 1; }
+
+.products-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 20px;
+}

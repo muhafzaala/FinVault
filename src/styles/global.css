@@ -1,0 +1,154 @@
+:root {
+  --color-bg:         #0f0f0f;
+  --color-surface:    #1a1a1a;
+  --color-surface-2:  #222222;
+  --color-border:     #2e2e2e;
+  --color-gold:       #c9a84c;
+  --color-gold-muted: #9e7f3a;
+  --color-cream:      #f0ead6;
+  --color-text:       #e8e0cc;
+  --color-text-muted: #8a8070;
+  --color-low:        #4a7c59;
+  --color-medium:     #9e7a2e;
+  --color-high:       #8b3a3a;
+  --radius:           8px;
+  --transition:       0.25s ease;
+  --shadow:           0 4px 20px rgba(0,0,0,0.4);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* ================= ROOT ================= */
+#root {
+  background: transparent !important;
+  position: relative;
+  z-index: 1;
+}
+
+body {
+  position: relative;
+  background-color: #050505;
+  color: var(--color-text);
+  font-family: 'Georgia', 'Times New Roman', serif;
+  line-height: 1.6;
+  min-height: 100vh;
+  isolation: isolate;
+  overflow-x: hidden;
+}
+
+/* ================= TEXT ================= */
+h1, h2, h3, h4 {
+  font-weight: normal;
+  letter-spacing: 0.03em;
+  color: var(--color-cream);
+}
+
+a { color: var(--color-gold); text-decoration: none; }
+
+button {
+  cursor: pointer;
+  font-family: inherit;
+  transition: var(--transition);
+}
+
+input, select, textarea {
+  font-family: inherit;
+  background: var(--color-surface-2);
+  color: var(--color-text);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  padding: 10px 14px;
+  outline: none;
+  transition: border-color var(--transition);
+  width: 100%;
+}
+
+input:focus, select:focus, textarea:focus {
+  border-color: var(--color-gold-muted);
+}
+
+/* ================= PAGE ================= */
+.page {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 24px;
+}
+
+/* ================= BACKGROUND LAYERS ================= */
+
+/* MAIN BACKGROUND (NO BLUR) */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: -3;
+
+  background-image:
+    linear-gradient(rgba(0,0,0,0.88), rgba(0,0,0,0.95)),
+    url('https://images.unsplash.com/photo-1585163347235-9d69c6baf8c3'),
+    url('https://images.unsplash.com/photo-1591604129939-f1efa4d9f7fa'),
+    url('https://images.unsplash.com/photo-1609948543911-ccf0dbe5f9e1'),
+    url('https://images.unsplash.com/photo-1549880181-56a44cf4a9a5'),
+    url('https://images.unsplash.com/photo-1571646034647-52e6ea84b28c');
+
+  background-repeat: no-repeat;
+
+  background-position:
+    center,
+    center bottom,
+    right bottom,
+    left bottom,
+    center top,
+    20% 80%;
+
+  background-size:
+    cover,
+    600px auto,
+    300px auto,
+    650px auto,
+    100% auto,
+    400px auto;
+
+  /* ✅ CLEAN & SHARP */
+  filter: brightness(0.7) contrast(1.1);
+}
+
+/* AJRAK OVERLAY */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+
+  background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMjAiIGhlaWdodD0iMTIwIj4KICA8cmVjdCB3aWR0aD0iMTIwIiBoZWlnaHQ9IjEyMCIgZmlsbD0iI2ZmZmZmZiIgZmlsbC1vcGFjaXR5PSIwIi8+CiAgPHJlY3QgeD0iMiIgeT0iMiIgd2lkdGg9IjExNiIgaGVpZ2h0PSIxMTYiIGZpbGw9Im5vbmUiIHN0cm9rZT0iI2ZmZmZmZiIgc3Ryb2tlLXdpZHRoPSIwLjYiLz4KICA8cG9seWdvbiBwb2ludHM9IjYwLDEwIDExMCw2MCA2MCwxMTAgMTAsNjAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iI2ZmZmZmZiIgc3Ryb2tlLXdpZHRoPSIwLjUiLz4KICA8Y2lyY2xlIGN4PSI2MCIgY3k9IjYwIiByPSIzIiBmaWxsPSIjZmZmZmZmIi8+Cjwvc3ZnPg');
+
+  background-repeat: repeat;
+  background-size: 140px;
+
+  opacity: 0.18;
+  mix-blend-mode: screen;
+  pointer-events: none;
+}
+
+/* VIGNETTE (LIGHT & CLEAN) */
+#root::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+
+  background:
+    radial-gradient(circle at 50% 50%, transparent 45%, rgba(0,0,0,0.65) 100%);
+}
+
+/* ================= UI CARDS (NO BLUR) ================= */
+.card, .container, .panel {
+  background: rgba(18, 18, 18, 0.85);
+  border: 1px solid rgba(201,168,76,0.25);
+  box-shadow: 0 8px 30px rgba(0,0,0,0.5);
+}
